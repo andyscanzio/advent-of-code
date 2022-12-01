@@ -1,6 +1,3 @@
-from pprint import pprint
-
-
 def main() -> tuple[int, int]:
     elves: list[int] = []
 
@@ -13,8 +10,8 @@ def main() -> tuple[int, int]:
 
 
 if __name__ == "__main__":
-    sol1, sol2 = main()
-    print(f"The elf carrying the most Calories is carrying {sol1} calories")
+    part1, part2 = main()
+    print(f"The elf carrying the most Calories is carrying {part1} calories")
     print(
-        f"The top three eleves carrying the most Calories are carrying {sol2} calories"
+        f"The top three eleves carrying the most Calories are carrying {part2} calories"
     )
