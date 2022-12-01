@@ -1,16 +1,14 @@
+from pprint import pprint
+
+
 def main() -> tuple[int, int]:
     elves: list[int] = []
 
     with open("/Users/andyscanzio/Developer/adventofcode2022/day1/input.txt", "r") as f:
-        elf = 0
-        for line in f:
-            if line != "\n":
-                elf += int(line)
-            else:
-                elves.append(elf)
-                elf = 0
-        elves.append(elf)
-
+        text = f.read()
+        elves = [
+            sum(map(int, elf.rstrip("\n").split("\n"))) for elf in text.split("\n\n")
+        ]
     return max(elves), sum(sorted(elves, reverse=True)[:3])
 
 
