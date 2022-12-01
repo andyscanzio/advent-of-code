@@ -1,7 +1,12 @@
+import os
+
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+
 def main() -> tuple[int, int]:
     elves: list[int] = []
 
-    with open("/Users/andyscanzio/Developer/adventofcode2022/day1/input.txt", "r") as f:
+    with open(os.path.join(__location__, "input.txt"), "r") as f:
         text = f.read()
         elves = [
             sum(map(int, elf.rstrip("\n").split("\n"))) for elf in text.split("\n\n")
