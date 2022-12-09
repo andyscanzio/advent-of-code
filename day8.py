@@ -1,19 +1,6 @@
-import os
+import aoc
 
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-
-test = """30373
-25512
-65332
-33549
-35390"""
-
-trees = [[int(tree) for tree in tree_line] for tree_line in test.split("\n")]
-
-with open(os.path.join(__location__, "input.txt"), "r") as f:
-    inp = f.read()
-
-trees = [[int(tree) for tree in tree_line] for tree_line in inp.split("\n")]
+trees = aoc.load_input("day8")
 
 
 def is_visible(i: int, j: int, grid: list[list[int]]) -> bool:
@@ -31,13 +18,6 @@ def is_visible(i: int, j: int, grid: list[list[int]]) -> bool:
         max(top, default=0),
         max(bottom, default=0),
     )
-
-
-print(
-    sum(
-        is_visible(i, j, trees) for i in range(len(trees)) for j in range(len(trees[0]))
-    )
-)
 
 
 def scenic_score(i: int, j: int, grid: list[list[int]]) -> int:
@@ -69,18 +49,22 @@ def scenic_score(i: int, j: int, grid: list[list[int]]) -> int:
     return l * r * t * b
 
 
-print(
-    max(
+def part1(text: str) -> int:
+    trees = [[int(tree) for tree in tree_line] for tree_line in text.split("\n")]
+    return sum(
+        is_visible(i, j, trees) for i in range(len(trees)) for j in range(len(trees[0]))
+    )
+
+
+def part2(text: str) -> int:
+    trees = [[int(tree) for tree in tree_line] for tree_line in text.split("\n")]
+    return max(
         scenic_score(i, j, trees)
         for i in range(len(trees))
         for j in range(len(trees[0]))
     )
-)
 
 
-def part1(text: str) -> int:
-    return 1
-
-
-def part2(text: str) -> int:
-    return 2
+if __name__ == "__main__":
+    print(part1(trees))
+    print(part2(trees))

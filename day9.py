@@ -1,10 +1,4 @@
-import os
-
-from aoc import load_input
-
-DEBUG = False
-
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+import aoc
 
 test = """R 4
 U 4
@@ -24,123 +18,84 @@ D 10
 L 25
 U 20"""
 
-moves = [(line.split(" ")[0], int(line.split(" ")[1])) for line in test.split("\n")]
 
-_input = load_input("day9")
-
-moves = [(line.split(" ")[0], int(line.split(" ")[1])) for line in _input.split("\n")]
-
-head = {"x": 0, "y": 0}
-tail = {"x": 0, "y": 0}
-
-spots: set[tuple[int, int]] = set()
-
-for move in moves:
-    for _ in range(move[1]):
-        if move[0] == "U":
-            head["y"] += 1
-        if move[0] == "D":
-            head["y"] -= 1
-        if move[0] == "L":
-            head["x"] -= 1
-        if move[0] == "R":
-            head["x"] += 1
-        if (abs(head["x"] - tail["x"]) == 1 and abs(head["y"] - tail["y"]) > 1) or (
-            abs(head["y"] - tail["y"]) == 1 and abs(head["x"] - tail["x"]) > 1
-        ):
-            tail["x"] += (head["x"] - tail["x"]) // abs(head["x"] - tail["x"])
-            tail["y"] += (head["y"] - tail["y"]) // abs(head["y"] - tail["y"])
-        if abs(head["x"] - tail["x"]) > 1:
-            tail["x"] += (head["x"] - tail["x"]) // abs(head["x"] - tail["x"])
-        if abs(head["y"] - tail["y"]) > 1:
-            tail["y"] += (head["y"] - tail["y"]) // abs(head["y"] - tail["y"])
-        spots.add((tail["x"], tail["y"]))
-
-print(len(spots))
-
-nodes = [
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-    {"x": 0, "y": 0},
-]
+moves = aoc.load_input("day9")
 
 
-spots2: set[tuple[int, int]] = set()
-if DEBUG:
-    with open(os.path.join(__location__, "debug.txt"), "w") as f:
-        m = [["." for _ in range(26)] for _ in range(21)]
+def move_head(move: str, head: dict[str, int]) -> dict[str, int]:
+    x, y = head["x"], head["y"]
+    if move == "U":
+        y = head["y"] + 1
+    if move == "D":
+        y = head["y"] - 1
+    if move == "L":
+        x = head["x"] - 1
+    if move == "R":
+        x = head["x"] + 1
+    return {"x": x, "y": y}
 
-        m[5][11] = "s"
-        for i, node in enumerate(reversed(nodes)):
-            j = 9 - i
-            if j == 0:
-                print(node)
-            m[node["y"] + 5][node["x"] + 11] = str(j) if j > 0 else "H"
-        with open(os.path.join(__location__, "debug.txt"), "a") as f:
-            for line in reversed(m):
-                f.write("".join(line))
-                f.write("\n")
-            f.write("\n")
 
-for move in moves:
-    if DEBUG:
-        with open(os.path.join(__location__, "debug.txt"), "a") as f:
-            f.write("==" + " ".join(map(str, move)) + "==")
-            f.write("\n")
-    for _ in range(move[1]):
-        head = nodes[0]
-        if move[0] == "U":
-            head["y"] += 1
-        elif move[0] == "D":
-            head["y"] -= 1
-        elif move[0] == "L":
-            head["x"] -= 1
-        elif move[0] == "R":
-            head["x"] += 1
-        for i in range(1, len(nodes)):
-            tail = nodes[i]
-            if (abs(head["x"] - tail["x"]) == 1 and abs(head["y"] - tail["y"]) > 1) or (
-                abs(head["y"] - tail["y"]) == 1 and abs(head["x"] - tail["x"]) > 1
-            ):
-                tail["x"] += (head["x"] - tail["x"]) // abs(head["x"] - tail["x"])
-                tail["y"] += (head["y"] - tail["y"]) // abs(head["y"] - tail["y"])
-            if abs(head["x"] - tail["x"]) > 1:
-                tail["x"] += (head["x"] - tail["x"]) // abs(head["x"] - tail["x"])
-            if abs(head["y"] - tail["y"]) > 1:
-                tail["y"] += (head["y"] - tail["y"]) // abs(head["y"] - tail["y"])
-            head = tail
+def move_tail(head: dict[str, int], tail: dict[str, int]) -> dict[str, int]:
+    x, y = tail["x"], tail["y"]
+    if (abs(head["x"] - tail["x"]) == 1 and abs(head["y"] - tail["y"]) > 1) or (
+        abs(head["y"] - tail["y"]) == 1 and abs(head["x"] - tail["x"]) > 1
+    ):
+        x = tail["x"] + (head["x"] - tail["x"]) // abs(head["x"] - tail["x"])
+        y = tail["y"] + (head["y"] - tail["y"]) // abs(head["y"] - tail["y"])
+    if abs(head["x"] - tail["x"]) > 1:
+        x = tail["x"] + (head["x"] - tail["x"]) // abs(head["x"] - tail["x"])
+    if abs(head["y"] - tail["y"]) > 1:
+        y = tail["y"] + (head["y"] - tail["y"]) // abs(head["y"] - tail["y"])
+    return {"x": x, "y": y}
 
-        spots2.add((nodes[-1]["x"], nodes[-1]["y"]))
-    if DEBUG:
-        m = [["." for _ in range(26)] for _ in range(21)]
 
-        m[5][11] = "s"
+def part1(text: str) -> int:
+    moves = [(line.split(" ")[0], int(line.split(" ")[1])) for line in text.split("\n")]
+    head = {"x": 0, "y": 0}
+    tail = {"x": 0, "y": 0}
 
-        for i, node in enumerate(reversed(nodes)):
-            j = 9 - i
-            if j == 0:
-                print(node)
-            m[node["y"] + 5][node["x"] + 11] = str(j) if j > 0 else "H"
-        with open(os.path.join(__location__, "debug.txt"), "a") as f:
-            for line in reversed(m):
-                f.write("".join(line))
-                f.write("\n")
-            f.write("\n")
+    spots: set[tuple[int, int]] = set()
 
-if DEBUG:
-    m = [["." for _ in range(26)] for _ in range(21)]
+    for move in moves:
+        for _ in range(move[1]):
+            head = move_head(move[0], head)
+            tail = move_tail(head, tail)
+            spots.add((tail["x"], tail["y"]))
 
-    for spot in spots2:
-        m[spot[1] + 5][spot[0] + 11] = "#"
+    return len(spots)
 
-    for line in reversed(m):
-        print("".join(line))
 
-print(len(spots2))
+def part2(text: str) -> int:
+
+    moves = [(line.split(" ")[0], int(line.split(" ")[1])) for line in text.split("\n")]
+    nodes = [
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+        {"x": 0, "y": 0},
+    ]
+
+    spots: set[tuple[int, int]] = set()
+
+    for move in moves:
+        for _ in range(move[1]):
+            nodes[0] = move_head(move[0], nodes[0])
+            head = nodes[0]
+            for i in range(1, len(nodes)):
+                nodes[i] = move_tail(head, nodes[i])
+                head = nodes[i]
+
+            spots.add((nodes[-1]["x"], nodes[-1]["y"]))
+
+    return len(spots)
+
+
+if __name__ == "__main__":
+    print(part1(moves))
+    print(part2(moves))
