@@ -1,6 +1,6 @@
 import aoc
 
-elves = aoc.load_input("day1")
+elves = aoc.load_input("day01")
 
 
 def part1(text: str) -> int:

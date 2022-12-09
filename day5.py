@@ -2,7 +2,7 @@ import itertools
 
 import aoc
 
-instructions = aoc.load_input("day5")
+instructions = aoc.load_input("day05")
 
 
 def get_end_stacks(text: str) -> int:

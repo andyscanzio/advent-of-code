@@ -1,6 +1,6 @@
 import aoc
 
-cmds = aoc.load_input("day7")
+cmds = aoc.load_input("day07")
 
 
 def get_tot_size(text: str) -> dict[str, int]:

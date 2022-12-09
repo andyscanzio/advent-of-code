@@ -2,7 +2,7 @@ from typing import Iterable, cast
 
 import aoc
 
-rucksacks = aoc.load_input("day3")
+rucksacks = aoc.load_input("day03")
 
 
 def letter(l: str) -> int:

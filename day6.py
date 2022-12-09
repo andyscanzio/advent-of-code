@@ -1,6 +1,6 @@
 import aoc
 
-packets = aoc.load_input("day6")
+packets = aoc.load_input("day06")
 
 
 def part1(text: str) -> int:

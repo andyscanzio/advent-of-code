@@ -1,6 +1,6 @@
 import aoc
 
-trees = aoc.load_input("day8")
+trees = aoc.load_input("day08")
 
 
 def is_visible(i: int, j: int, grid: list[list[int]]) -> bool:

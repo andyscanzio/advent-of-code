@@ -1,6 +1,6 @@
 import aoc
 
-assignments = aoc.load_input("day4")
+assignments = aoc.load_input("day04")
 
 
 def overlap_completely(assignnment: tuple[tuple[int, int], tuple[int, int]]) -> bool:
