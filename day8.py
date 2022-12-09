@@ -76,3 +76,11 @@ print(
         for j in range(len(trees[0]))
     )
 )
+
+
+def part1(text: str) -> int:
+    return 1
+
+
+def part2(text: str) -> int:
+    return 2

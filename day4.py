@@ -1,19 +1,6 @@
-import os
+import aoc
 
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-
-
-with open(os.path.join(__location__, "input.txt"), "r") as f:
-    assignments = f.read()
-
-
-assignments = [
-    tuple(
-        (int(elf.split("-")[0]), int(elf.split("-")[-1]))
-        for elf in assignment.split(",")
-    )
-    for assignment in assignments.split("\n")
-]
+assignments = aoc.load_input("day4")
 
 
 def overlap_completely(assignnment: tuple[tuple[int, int], tuple[int, int]]) -> bool:
@@ -38,6 +25,28 @@ def overlap_partially(assignnment: tuple[tuple[int, int], tuple[int, int]]) -> b
     )
 
 
-print(sum(overlap_completely(assignment) for assignment in assignments))
+def part1(text: str) -> int:
+    assignments = [
+        tuple(
+            (int(elf.split("-")[0]), int(elf.split("-")[-1]))
+            for elf in assignment.split(",")
+        )
+        for assignment in text.split("\n")
+    ]
+    return sum(overlap_completely(assignment) for assignment in assignments)
 
-print(sum(overlap_partially(assignment) for assignment in assignments))
+
+def part2(text: str) -> int:
+    assignments = [
+        tuple(
+            (int(elf.split("-")[0]), int(elf.split("-")[-1]))
+            for elf in assignment.split(",")
+        )
+        for assignment in text.split("\n")
+    ]
+    return sum(overlap_partially(assignment) for assignment in assignments)
+
+
+if __name__ == "__main__":
+    print(part1(assignments))
+    print(part2(assignments))
