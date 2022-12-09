@@ -1,6 +1,6 @@
-import aoc
+import utils
 
-strategies = aoc.load_input("day02")
+strategies = utils.load_input("day02")
 
 
 def part1(text: str) -> int:

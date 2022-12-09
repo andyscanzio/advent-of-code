@@ -1,6 +1,6 @@
-import aoc
+import utils
 
-elves = aoc.load_input("day01")
+elves = utils.load_input("day01")
 
 
 def part1(text: str) -> int:

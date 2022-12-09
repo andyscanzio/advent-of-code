@@ -1,9 +1,9 @@
 import unittest
 
-import day1
+import day01
 
 
-class TestDay1(unittest.TestCase):
+class TestDay01(unittest.TestCase):
     def test_part1(self):
         text = """1000
 2000
@@ -19,7 +19,7 @@ class TestDay1(unittest.TestCase):
 9000
 
 10000"""
-        self.assertEqual(day1.part1(text), 24000)
+        self.assertEqual(day01.part1(text), 24000)
 
     def test_part2(self):
         text = """1000
@@ -36,4 +36,4 @@ class TestDay1(unittest.TestCase):
 9000
 
 10000"""
-        self.assertEqual(day1.part2(text), 45000)
+        self.assertEqual(day01.part2(text), 45000)

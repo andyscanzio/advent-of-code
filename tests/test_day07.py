@@ -1,9 +1,9 @@
 import unittest
 
-import day7
+import day07
 
 
-class TestDay7(unittest.TestCase):
+class TestDay07(unittest.TestCase):
     def test_part1(self):
         text = """$ cd /
 $ ls
@@ -28,7 +28,7 @@ $ ls
 8033020 d.log
 5626152 d.ext
 7214296 k"""
-        self.assertEqual(day7.part1(text), 95437)
+        self.assertEqual(day07.part1(text), 95437)
 
     def test_part2(self):
         text = """$ cd /
@@ -54,4 +54,4 @@ $ ls
 8033020 d.log
 5626152 d.ext
 7214296 k"""
-        self.assertEqual(day7.part2(text), 24933642)
+        self.assertEqual(day07.part2(text), 24933642)

@@ -1,9 +1,9 @@
 import unittest
 
-import day9
+import day09
 
 
-class TestDay9(unittest.TestCase):
+class TestDay09(unittest.TestCase):
     def test_part1(self):
         text = """R 4
 U 4
@@ -13,7 +13,7 @@ R 4
 D 1
 L 5
 R 2"""
-        self.assertEqual(day9.part1(text), 13)
+        self.assertEqual(day09.part1(text), 13)
 
     def test_part2_v1(self):
         text = """R 4
@@ -24,7 +24,7 @@ R 4
 D 1
 L 5
 R 2"""
-        self.assertEqual(day9.part2(text), 1)
+        self.assertEqual(day09.part2(text), 1)
 
     def test_part2_v2(self):
         text = """R 5
@@ -35,4 +35,4 @@ R 17
 D 10
 L 25
 U 20"""
-        self.assertEqual(day9.part2(text), 36)
+        self.assertEqual(day09.part2(text), 36)

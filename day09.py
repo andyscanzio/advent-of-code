@@ -1,6 +1,6 @@
-import aoc
+import utils
 
-moves = aoc.load_input("day09")
+moves = utils.load_input("day09")
 
 
 def move_head(move: str, head: dict[str, int]) -> dict[str, int]:

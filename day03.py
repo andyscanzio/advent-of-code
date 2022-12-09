@@ -1,8 +1,8 @@
 from typing import Iterable, cast
 
-import aoc
+import utils
 
-rucksacks = aoc.load_input("day03")
+rucksacks = utils.load_input("day03")
 
 
 def letter(l: str) -> int:

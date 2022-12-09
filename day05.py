@@ -1,8 +1,8 @@
 import itertools
 
-import aoc
+import utils
 
-instructions = aoc.load_input("day05")
+instructions = utils.load_input("day05")
 
 
 def get_end_stacks(text: str) -> int:
