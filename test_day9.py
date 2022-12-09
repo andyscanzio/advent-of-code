@@ -3,7 +3,7 @@ import unittest
 import day9
 
 
-class TestDay8(unittest.TestCase):
+class TestDay9(unittest.TestCase):
     def test_part1(self):
         text = """R 4
 U 4
