@@ -46,9 +46,10 @@ def parse_monkeys(
 
 def part1(text: str) -> int:
     items, operations, decisions = parse_monkeys(text)
-    inspect = [0] * len(items)
+    n_monkeys = len(items)
+    inspect = [0] * n_monkeys
     for _ in range(20):
-        for monkey in range(len(items)):
+        for monkey in range(n_monkeys):
             while items[monkey]:
                 item = items[monkey].pop(0)
                 inspect[monkey] += 1
@@ -65,9 +66,10 @@ def part1(text: str) -> int:
 def part2(text: str) -> int:
     items, operations, decisions = parse_monkeys(text)
     common = reduce(mul, [decision[0] for decision in decisions])
-    inspect = [0] * len(items)
+    n_monkeys = len(items)
+    inspect = [0] * n_monkeys
     for _ in range(10000):
-        for monkey in range(len(items)):
+        for monkey in range(n_monkeys):
             while items[monkey]:
                 item = items[monkey].pop(0) % common
                 inspect[monkey] += 1
