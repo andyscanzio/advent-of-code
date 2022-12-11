@@ -50,8 +50,7 @@ def part1(text: str) -> int:
     inspect = [0] * n_monkeys
     for _ in range(20):
         for monkey in range(n_monkeys):
-            while items[monkey]:
-                item = items[monkey].pop(0)
+            for item in items[monkey]:
                 inspect[monkey] += 1
                 worry = operations[monkey](item) // 3
                 if worry % decisions[monkey][0] == 0:
@@ -59,6 +58,7 @@ def part1(text: str) -> int:
                 else:
                     to_monkey = decisions[monkey][2]
                 items[to_monkey].append(worry)
+            items[monkey] = []
     ans = sorted(inspect, reverse=True)
     return ans[0] * ans[1]
 
@@ -70,8 +70,8 @@ def part2(text: str) -> int:
     inspect = [0] * n_monkeys
     for _ in range(10000):
         for monkey in range(n_monkeys):
-            while items[monkey]:
-                item = items[monkey].pop(0) % common
+            for item in items[monkey]:
+                item = item % common
                 inspect[monkey] += 1
                 worry = operations[monkey](item) % common
                 if worry % decisions[monkey][0] == 0:
@@ -79,6 +79,7 @@ def part2(text: str) -> int:
                 else:
                     to_monkey = decisions[monkey][2]
                 items[to_monkey].append(worry)
+            items[monkey] = []
     ans = sorted(inspect, reverse=True)
     return ans[0] * ans[1]
 
