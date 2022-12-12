@@ -11,6 +11,7 @@ import day08
 import day09
 import day10
 import day11
+import day12
 
 
 class TestDay01(unittest.TestCase):
@@ -417,3 +418,18 @@ Monkey 3:
 
     def test_part2(self):
         self.assertEqual(day11.part2(self.text), 2713310158)
+
+
+class TestDay12(unittest.TestCase):
+    def setUp(self):
+        self.text = """Sabqponm
+abcryxxl
+accszExk
+acctuvwj
+abdefghi"""
+
+    def test_part1(self):
+        self.assertEqual(day12.part1(self.text), 31)
+
+    def test_part2(self):
+        self.assertEqual(day12.part2(self.text), 29)
