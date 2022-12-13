@@ -12,6 +12,7 @@ import day09
 import day10
 import day11
 import day12
+import day13
 
 
 class TestDay01(unittest.TestCase):
@@ -433,3 +434,51 @@ abdefghi"""
 
     def test_part2(self):
         self.assertEqual(day12.part2(self.text), 29)
+
+
+class TestDay13(unittest.TestCase):
+    def setUp(self):
+        self.test_inputs = [  # type: ignore
+            ([1, 1, 3, 1, 1], [1, 1, 5, 1, 1]),
+            ([[1], [2, 3, 4]], [[1], 4]),
+            ([9], [[8, 7, 6]]),
+            ([[4, 4], 4, 4], [[4, 4], 4, 4, 4]),
+            ([7, 7, 7, 7], [7, 7, 7]),
+            ([], [3]),
+            ([[[]]], [[]]),
+            ([1, [2, [3, [4, [5, 6, 7]]]], 8, 9], [1, [2, [3, [4, [5, 6, 0]]]], 8, 9]),
+        ]
+        self.results = [True, True, False, True, False, True, False, False]
+        self.text = """[1,1,3,1,1]
+[1,1,5,1,1]
+
+[[1],[2,3,4]]
+[[1],4]
+
+[9]
+[[8,7,6]]
+
+[[4,4],4,4]
+[[4,4],4,4,4]
+
+[7,7,7,7]
+[7,7,7]
+
+[]
+[3]
+
+[[[]]]
+[[]]
+
+[1,[2,[3,[4,[5,6,7]]]],8,9]
+[1,[2,[3,[4,[5,6,0]]]],8,9]"""
+
+    def test_compare(self):
+        for (left, right), result in zip(self.test_inputs, self.results):  # type: ignore
+            self.assertEqual(day13.compare(left, right), result)  # type: ignore
+
+    def test_part1(self):
+        self.assertEqual(day13.part1(self.text), 13)
+
+    def test_part2(self):
+        self.assertEqual(day13.part2(self.text), 140)
