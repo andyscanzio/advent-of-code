@@ -14,6 +14,7 @@ import day11
 import day12
 import day13
 import day14
+import day15
 
 
 class TestDay01(unittest.TestCase):
@@ -495,3 +496,29 @@ class TestDay14(unittest.TestCase):
 
     def test_part2(self):
         self.assertEqual(day14.part2(self.text), 93)
+
+
+class TestDay15(unittest.TestCase):
+    def setUp(self):
+        self.text = """Sensor at x=2, y=18: closest beacon is at x=-2, y=15
+Sensor at x=9, y=16: closest beacon is at x=10, y=16
+Sensor at x=13, y=2: closest beacon is at x=15, y=3
+Sensor at x=12, y=14: closest beacon is at x=10, y=16
+Sensor at x=10, y=20: closest beacon is at x=10, y=16
+Sensor at x=14, y=17: closest beacon is at x=10, y=16
+Sensor at x=8, y=7: closest beacon is at x=2, y=10
+Sensor at x=2, y=0: closest beacon is at x=2, y=10
+Sensor at x=0, y=11: closest beacon is at x=2, y=10
+Sensor at x=20, y=14: closest beacon is at x=25, y=17
+Sensor at x=17, y=20: closest beacon is at x=21, y=22
+Sensor at x=16, y=7: closest beacon is at x=15, y=3
+Sensor at x=14, y=3: closest beacon is at x=15, y=3
+Sensor at x=20, y=1: closest beacon is at x=15, y=3"""
+        self.row = 10
+        self.size = 20
+
+    def test_part1(self):
+        self.assertEqual(day15.part1(self.text, self.row), 26)
+
+    def test_part2(self):
+        self.assertEqual(day15.part2(self.text, self.size), 56000011)
