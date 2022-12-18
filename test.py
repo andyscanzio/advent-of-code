@@ -17,6 +17,7 @@ import day14
 import day15
 import day16
 import day17
+import day18
 
 
 class TestDay01(unittest.TestCase):
@@ -554,4 +555,27 @@ class TestDay17(unittest.TestCase):
         self.assertEqual(day17.part1(self.text, 2022), 3068)
 
     def test_part2(self):
-        self.assertEqual(day17.part1(self.text, 1000000000000), 1514285714288)
+        self.assertEqual(day17.part2(self.text, 1000000000000), 1514285714288)
+
+
+class TestDay18(unittest.TestCase):
+    def setUp(self):
+        self.text = """2,2,2
+1,2,2
+3,2,2
+2,1,2
+2,3,2
+2,2,1
+2,2,3
+2,2,4
+2,2,6
+1,2,5
+3,2,5
+2,1,5
+2,3,5"""
+
+    def test_part1(self):
+        self.assertEqual(day18.part1(self.text), 64)
+
+    def test_part2(self):
+        self.assertEqual(day18.part2(self.text), 58)
