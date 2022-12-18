@@ -15,6 +15,7 @@ import day12
 import day13
 import day14
 import day15
+import day16
 
 
 class TestDay01(unittest.TestCase):
@@ -522,3 +523,23 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3"""
 
     def test_part2(self):
         self.assertEqual(day15.part2(self.text, self.size), 56000011)
+
+
+class TestDay16(unittest.TestCase):
+    def setUp(self):
+        self.text = """Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
+Valve BB has flow rate=13; tunnels lead to valves CC, AA
+Valve CC has flow rate=2; tunnels lead to valves DD, BB
+Valve DD has flow rate=20; tunnels lead to valves CC, AA, EE
+Valve EE has flow rate=3; tunnels lead to valves FF, DD
+Valve FF has flow rate=0; tunnels lead to valves EE, GG
+Valve GG has flow rate=0; tunnels lead to valves FF, HH
+Valve HH has flow rate=22; tunnel leads to valve GG
+Valve II has flow rate=0; tunnels lead to valves AA, JJ
+Valve JJ has flow rate=21; tunnel leads to valve II"""
+
+    def test_part1(self):
+        self.assertEqual(day16.part1(self.text), 1651)
+
+    def test_part2(self):
+        self.assertEqual(day16.part2(self.text), 1707)
