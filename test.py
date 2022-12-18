@@ -16,6 +16,7 @@ import day13
 import day14
 import day15
 import day16
+import day17
 
 
 class TestDay01(unittest.TestCase):
@@ -543,3 +544,14 @@ Valve JJ has flow rate=21; tunnel leads to valve II"""
 
     def test_part2(self):
         self.assertEqual(day16.part2(self.text), 1707)
+
+
+class TestDay17(unittest.TestCase):
+    def setUp(self):
+        self.text = ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>"
+
+    def test_part1(self):
+        self.assertEqual(day17.part1(self.text, 2022), 3068)
+
+    def test_part2(self):
+        self.assertEqual(day17.part1(self.text, 1000000000000), 1514285714288)
