@@ -19,6 +19,7 @@ import day16
 import day17
 import day18
 import day19
+import day20
 
 
 class TestDay01(unittest.TestCase):
@@ -589,3 +590,20 @@ Blueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsid
 
     def test_part1(self):
         self.assertEqual(day19.part1(self.text), 33)
+
+
+class TestDay20(unittest.TestCase):
+    def setUp(self):
+        self.text = """1
+2
+-3
+3
+-2
+0
+4"""
+
+    def test_part1(self):
+        self.assertEqual(day20.part1(self.text), 3)
+
+    def test_part2(self):
+        self.assertEqual(day20.part2(self.text), 1623178306)
