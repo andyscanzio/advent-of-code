@@ -20,6 +20,7 @@ import day17
 import day18
 import day19
 import day20
+import day21
 
 
 class TestDay01(unittest.TestCase):
@@ -607,3 +608,25 @@ class TestDay20(unittest.TestCase):
 
     def test_part2(self):
         self.assertEqual(day20.part2(self.text), 1623178306)
+
+
+class TestDay21(unittest.TestCase):
+    def setUp(self):
+        self.text = """root: pppw + sjmn
+dbpl: 5
+cczh: sllz + lgvd
+zczc: 2
+ptdq: humn - dvpt
+dvpt: 3
+lfqf: 4
+humn: 5
+ljgn: 2
+sjmn: drzm * dbpl
+sllz: 4
+pppw: cczh / lfqf
+lgvd: ljgn * ptdq
+drzm: hmdt - zczc
+hmdt: 32"""
+
+    def test_part1(self):
+        self.assertEqual(day21.part1(self.text), 152)
